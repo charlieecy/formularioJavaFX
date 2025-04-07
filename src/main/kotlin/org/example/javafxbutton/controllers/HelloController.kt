@@ -44,14 +44,16 @@ class HelloController {
      * es decir, que el usuario teclee, se ejecuta el bloque de código que
      * comprueba si el nuevo valor de texto tiene 2 o más caracteres. En caso positivo,
      * activa el botón. En caso negativo, lo desactiva.
+     * @see activarBoton
+     * @see desactivarBoton
      */
     private fun dosOMasCaracteres() {
         campoTexto.textProperty().addListener { observable, oldvalue, newValue ->
             if (newValue.length >= 2) {
-                botonEnviar.isDisable = false
+                activarBoton()
             }
             if (newValue.length < 2) {
-                botonEnviar.isDisable = true
+                desactivarBoton()
             }
         }
     }
@@ -62,6 +64,14 @@ class HelloController {
      */
     private fun desactivarBoton() {
         botonEnviar.isDisable = true
+    }
+
+    @FXML
+    /**
+     * Activa el botón de enviar.
+     */
+    private fun activarBoton() {
+        botonEnviar.isDisable = false
     }
 
     @FXML
